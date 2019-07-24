@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tambah KRS</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" th:href="@{/font-awesome-4.7.0/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/bootstrap-3.3.7/css/bootstrap.min.css}">
+    <script th:src="@{/jquery-1.12.4.min.js}"></script>
+    <script th:src="@{/bootstrap-3.3.7/js/bootstrap.min.js}"></script>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav">
+            <li class="active"><a th:href="@{/}">Home</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="form-group col-md-4 text-center">
+            <h2>KRS woy!</h2>
+        </div>
+    </div>
+
+    <hr>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="form-group col-md-4">
+            <button type="button" class="close" onclick="window.location.href='/user';">&times;</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div th:if="${param.failed}" class="alert alert-warning col-md-4" role="alert">
+            <strong>NOTIFIKASI : </strong> Gagal simpan data
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div th:if="${param.success}" class="alert alert-success col-md-4" role="alert">
+            <strong>NOTIFIKASI : </strong> Berhasil simpan data
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+
+    <div th:each="data : ${dataSets2}">
+        <span th:text="${data.matakuliah}"></span>.
+        <form th:action="@{/mahasiswa/saveTest}" th:method="post">
+            <input type="text" th:name="nim" th:value="${nim}"/><br/>
+            id matakuliah:
+            <input type="text" th:name="id" th:value="${data.id}"/><br/>
+            matakuliah":
+            <input type="text" th:name="matakuliah" th:value="${data.matakuliah}"/><br/>
+            <input type="submit" value="Gaskeun!" /><hr/>
+        </form>
+    </div>
+
+
+<!--    <form>-->
+<!--        <div class="chart-legend">-->
+<!--            <label for="nim">NIM Mahasiswa : </label><br/>-->
+<!--            <label for="mahasiswa">Nama Mahasiswa :</label><br/>-->
+<!--            <label for="maks">Maksimal SKS : </label>-->
+<!--        </div>-->
+
+
+<!--                <div class="form-group col-md-6">-->
+<!--                    <div class="panel-body">-->
+<!--                        <p>Mata Kuliah Tersedia : </p>-->
+<!--                        <table class="table table-striped table-bordered table-list">-->
+<!--                            <thead>-->
+<!--                            <tr >-->
+<!--                                <th width="15%">Pilih</th>-->
+<!--                                <th width="60%">Mata Kuliah</th>-->
+<!--                                <th width="25%">SKS</th>-->
+<!--                            </tr>-->
+<!--                            </thead>-->
+<!--                            <tbody>-->
+<!--                            <tr th:each="data : ${dataSets}">-->
+<!--                                <td align="center"></a> <button type="submit" class="btn btn-success">Pilih</button></td>-->
+<!--                                <td th:text="${data.matakuliah}"></td>-->
+<!--                                <td th:text="${data.sks}"></td>-->
+<!--                            </tr>-->
+<!--                            <td></td>-->
+<!--                            <td align="right">Jumlah SKS</td>-->
+<!--                            <td></td>-->
+<!--                            </tbody>-->
+<!--                        </table>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+
+<!--                <div class="form-group col-md-6">-->
+<!--                    <div class="panel-body">-->
+<!--                        <p>Mata Kuliah Terpilih :</p>-->
+<!--                        <table class="table table-striped table-bordered table-list">-->
+<!--                            <thead>-->
+<!--                            <tr>-->
+<!--                                <th width="60%">Mata Kuliah</th>-->
+<!--                                <th width="25%">SKS</th>-->
+<!--                                <th width="15%">Pilih</th>-->
+<!--                            </tr>-->
+<!--                            </thead>-->
+<!--                            <tbody>-->
+<!--                            <tr th:each="data : ${dataSets2}">-->
+<!--                                <td th:text="${data.matakuliah}"></td>-->
+<!--                                <td th:text="${data.sks}"></td>-->
+<!--                                <td align="center"><button type="submit" class="btn btn-danger">Hapus</button></td>-->
+<!--                            </tr>-->
+<!--                            <td></td>-->
+<!--                            <td align="right">Jumlah SKS</td>-->
+<!--                            <td></td>-->
+<!--                            </tbody>-->
+<!--                        </table>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--                <div class="form-group col-md-4">-->
+
+<!--                </div>-->
+
+<!--&lt;!&ndash;                <div class="form-group col-md-4">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <button type="submit" class="btn btn-success">Simpan</button>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--    </form>-->
+
+</div>
+</body>
+</html>
